@@ -5,9 +5,9 @@ using LeafByte.Parking.CrossCutting.Pagination;
 
 namespace LeafByte.Parking.API.Features.Users.GetUsers;
 
-public class GetUsersEndpoint : ICarterModule
+public static class GetUsersEndpoint
 {
-    public void AddRoutes(IEndpointRouteBuilder app)
+    public static void AddRoute(IEndpointRouteBuilder app)
     {
         app.MapGet("/users", async (IMediator mediator, CancellationToken ct, [FromQuery] int pageIndex = 0, [FromQuery] int pageSize = 10) =>
         {

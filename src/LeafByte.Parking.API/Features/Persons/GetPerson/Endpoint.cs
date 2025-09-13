@@ -3,16 +3,15 @@ using MediatR;
 
 namespace LeafByte.Parking.API.Features.Persons.GetPerson;
 
-public class GetPersonEndpoint : ICarterModule
+public static class GetPersonEndpoint
 {
-    public void AddRoutes(IEndpointRouteBuilder app)
+    public static void AddRoute(IEndpointRouteBuilder app)
     {
-        app.MapGet("/persons/{id}", async (int id, IMediator mediator, CancellationToken ct) =>
+        app.MapGet("/{id}", async (int id, IMediator mediator, CancellationToken ct) =>
         {
             var result = await mediator.Send(new Query(id), ct);
             return result is not null ? Results.Ok(result) : Results.NotFound();
         })
-        .WithName("GetPerson")
-        .WithTags("Person");
+        .WithName("GetPerson");
     }
 }

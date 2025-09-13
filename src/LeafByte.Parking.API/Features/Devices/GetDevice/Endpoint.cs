@@ -1,9 +1,9 @@
 using Carter;
 using MediatR;
 
-namespace LeafByte.Parking.API.Features.Users.GetUserById;
+namespace LeafByte.Parking.API.Features.Devices.GetDevice;
 
-public static class GetUserByIdEndpoint
+public static class GetDeviceEndpoint
 {
     public static void AddRoute(IEndpointRouteBuilder app)
     {
@@ -12,6 +12,6 @@ public static class GetUserByIdEndpoint
             var result = await mediator.Send(new Query(id), ct);
             return result is not null ? Results.Ok(result) : Results.NotFound();
         })
-        .WithName("GetUserById");
+        .WithName("GetDevice");
     }
 }

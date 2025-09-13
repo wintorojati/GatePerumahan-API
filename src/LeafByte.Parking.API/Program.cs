@@ -62,14 +62,18 @@ using (var scope = app.Services.CreateScope())
     db.Database.Migrate();
 }
 
-app.MapOpenApi();
-app.MapScalarApiReference();
-
 app.UseHttpsRedirection();
 
 app.UseCors("AllowAll");
 app.UseExceptionHandler(options => { });
 
-app.MapCarter();
+// Register grouped endpoints
+app.AddDeviceEndpoints();
+app.AddGateEndpoints();
+app.AddPersonEndpoints();
+app.AddUserEndpoints();
+
+app.MapOpenApi();
+app.MapScalarApiReference();
 
 app.Run();

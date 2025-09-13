@@ -1,9 +1,9 @@
 using Carter;
 using MediatR;
 
-namespace LeafByte.Parking.API.Features.Users.UpdateUser;
+namespace LeafByte.Parking.API.Features.Devices.UpdateDevice;
 
-public static class UpdateUserEndpoint
+public static class UpdateDeviceEndpoint
 {
     public static void AddRoute(IEndpointRouteBuilder app)
     {
@@ -12,6 +12,6 @@ public static class UpdateUserEndpoint
             await mediator.Send(command with { Id = id }, ct);
             return Results.NoContent();
         })
-        .WithName("UpdateUser");
+        .WithName("UpdateDevice");
     }
 }

@@ -3,16 +3,15 @@ using MediatR;
 
 namespace LeafByte.Parking.API.Features.Users.CreateUser;
 
-public class CreateUserEndpoint : ICarterModule
+public static class CreateUserEndpoint
 {
-    public void AddRoutes(IEndpointRouteBuilder app)
+    public static void AddRoute(IEndpointRouteBuilder app)
     {
-        app.MapPost("/users", async (Command command, IMediator mediator, CancellationToken ct) =>
+        app.MapPost("/", async (Command command, IMediator mediator, CancellationToken ct) =>
         {
             var result = await mediator.Send(command, ct);
             return Results.Created($"/users/{result.Id}", result);
         })
-        .WithName("CreateUser")
-        .WithTags("Users");
+        .WithName("CreateUser");
     }
 }

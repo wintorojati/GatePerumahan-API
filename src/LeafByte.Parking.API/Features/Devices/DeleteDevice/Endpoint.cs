@@ -1,9 +1,9 @@
 using Carter;
 using MediatR;
 
-namespace LeafByte.Parking.API.Features.Persons.DeletePerson;
+namespace LeafByte.Parking.API.Features.Devices.DeleteDevice;
 
-public static class DeletePersonEndpoint
+public static class DeleteDeviceEndpoint
 {
     public static void AddRoute(IEndpointRouteBuilder app)
     {
@@ -12,6 +12,6 @@ public static class DeletePersonEndpoint
             await mediator.Send(new Command(id), ct);
             return Results.NoContent();
         })
-        .WithName("DeletePerson");
+        .WithName("DeleteDevice");
     }
 }

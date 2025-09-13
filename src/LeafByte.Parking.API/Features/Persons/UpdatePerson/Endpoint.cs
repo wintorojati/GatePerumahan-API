@@ -3,9 +3,9 @@ using MediatR;
 
 namespace LeafByte.Parking.API.Features.Persons.UpdatePerson;
 
-public class UpdatePersonEndpoint : ICarterModule
+public static class UpdatePersonEndpoint
 {
-    public void AddRoutes(IEndpointRouteBuilder app)
+    public static void AddRoute(IEndpointRouteBuilder app)
     {
         app.MapPut("/persons/{id}", async (int id, Command command, IMediator mediator, CancellationToken ct) =>
         {
