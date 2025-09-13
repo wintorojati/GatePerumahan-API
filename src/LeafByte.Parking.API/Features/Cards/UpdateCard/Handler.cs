@@ -1,0 +1,31 @@
+using MediatR;
+using LeafByte.Parking.API.Models;
+using Microsoft.EntityFrameworkCore;
+
+namespace LeafByte.Parking.API.Features.Cards.UpdateCard;
+
+public class Handler : IRequestHandler<Command>
+{
+    private readonly ApplicationDbContext _context;
+
+    public Handler(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+
+    public async Task Handle(Command request, CancellationToken cancellationToken)
+    {
+        var card = await _context.Cards
+            .FirstOrDefaultAsync(c => c.Id == request.Id && c.Status == Status.Active, cancellationToken);
+
+        if (card is null)
+            return;
+
+        card.PersonId = request.PersonId;
+        card.CardUid = request.CardUid;
+        card.AccessType = request.AccessType;
+        card.UpdatedAt = DateTime.UtcNow;
+
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+}

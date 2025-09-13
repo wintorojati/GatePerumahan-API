@@ -1,3 +1,9 @@
+using LeafByte.Parking.API.Features.Cards;
+using LeafByte.Parking.API.Features.Devices;
+using LeafByte.Parking.API.Features.EntryLogs;
+using LeafByte.Parking.API.Features.Gates;
+using LeafByte.Parking.API.Features.Persons;
+using LeafByte.Parking.API.Features.Users;
 using LeafByte.Parking.CrossCutting.Exceptions.Handler;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -17,19 +23,23 @@ builder.Host.UseSerilog((context, loggerConfiguration) =>
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly));
 builder.Services.AddAutoMapper(assembly);
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
+builder.Services.AddScoped<AuthService>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"] ?? ""))
-    };
-});
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+        };
+    });
 
 builder.Services.AddAuthorization();
 
@@ -67,11 +77,17 @@ app.UseHttpsRedirection();
 app.UseCors("AllowAll");
 app.UseExceptionHandler(options => { });
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 // Register grouped endpoints
+app.AddAuthEndpoints();
 app.AddDeviceEndpoints();
 app.AddGateEndpoints();
 app.AddPersonEndpoints();
 app.AddUserEndpoints();
+app.AddCardEndpoints();
+app.AddEntryLogEndpoints();
 
 app.MapOpenApi();
 app.MapScalarApiReference();

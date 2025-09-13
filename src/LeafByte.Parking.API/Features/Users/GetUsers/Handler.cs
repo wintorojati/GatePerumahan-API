@@ -1,9 +1,7 @@
-using MediatR;
-using LeafByte.Parking.API.Data;
-using LeafByte.Parking.API.Models;
-using LeafByte.Parking.CrossCutting.Pagination;
-using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using LeafByte.Parking.API.Features.Users.GetUserById;
+using LeafByte.Parking.CrossCutting.Pagination;
+using MediatR;
 
 namespace LeafByte.Parking.API.Features.Users.GetUsers;
 

@@ -1,6 +1,6 @@
 using MediatR;
 using LeafByte.Parking.CrossCutting.Pagination;
-using LeafByte.Parking.API.Models;
+using LeafByte.Parking.API.Features.Users.GetUserById;
 
 namespace LeafByte.Parking.API.Features.Users.GetUsers;
 
