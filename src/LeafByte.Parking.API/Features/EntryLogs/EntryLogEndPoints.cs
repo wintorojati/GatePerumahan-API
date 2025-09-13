@@ -1,5 +1,10 @@
 using Carter;
 using Microsoft.AspNetCore.Authorization;
+using LeafByte.Parking.API.Features.EntryLogs.CreateEntryLog;
+using LeafByte.Parking.API.Features.EntryLogs.GetEntryLogs;
+using LeafByte.Parking.API.Features.EntryLogs.GetEntryLog;
+using LeafByte.Parking.API.Features.EntryLogs.UpdateEntryLog;
+using LeafByte.Parking.API.Features.EntryLogs.DeleteEntryLog;
 
 namespace LeafByte.Parking.API.Features.EntryLogs;
 

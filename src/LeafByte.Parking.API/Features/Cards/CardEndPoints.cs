@@ -1,5 +1,10 @@
 using Carter;
 using Microsoft.AspNetCore.Authorization;
+using LeafByte.Parking.API.Features.Cards.CreateCard;
+using LeafByte.Parking.API.Features.Cards.GetCards;
+using LeafByte.Parking.API.Features.Cards.GetCard;
+using LeafByte.Parking.API.Features.Cards.UpdateCard;
+using LeafByte.Parking.API.Features.Cards.DeleteCard;
 
 namespace LeafByte.Parking.API.Features.Cards;
 

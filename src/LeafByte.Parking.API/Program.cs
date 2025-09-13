@@ -4,7 +4,9 @@ using LeafByte.Parking.API.Features.EntryLogs;
 using LeafByte.Parking.API.Features.Gates;
 using LeafByte.Parking.API.Features.Persons;
 using LeafByte.Parking.API.Features.Users;
+using LeafByte.Parking.API.Features.Auth;
 using LeafByte.Parking.CrossCutting.Exceptions.Handler;
+using LeafByte.Parking.API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
@@ -81,13 +83,13 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 // Register grouped endpoints
-app.AddAuthEndpoints();
 app.AddDeviceEndpoints();
 app.AddGateEndpoints();
 app.AddPersonEndpoints();
 app.AddUserEndpoints();
 app.AddCardEndpoints();
 app.AddEntryLogEndpoints();
+app.AddAuthEndpoints();
 
 app.MapOpenApi();
 app.MapScalarApiReference();
