@@ -9,7 +9,8 @@ public enum UserRole
 public enum Status
 {
     Active,
-    Inactive
+    Inactive,
+    Deleted 
 }
 
 public enum AccessType

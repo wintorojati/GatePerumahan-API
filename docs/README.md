@@ -1,205 +1,114 @@
-# Vertical-Slice-Architecture
+# Housing Gate
+System for managing access to residential gates using RFID.
 
-[![.NET Build & Test](https://github.com/Amitpnk/Vertical-Slice-Architecture/actions/workflows/dotnet.yml/badge.svg)](https://github.com/Amitpnk/Vertical-Slice-Architecture/actions/workflows/dotnet.yml)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Amitpnk/Vertical-Slice-Architecture/blob/main/LICENSE)
+## Features
+- RFID registration
+- RFID deletion
+- Member data management
+- RFID authentication
+- Access log management
+- Access reports
+- User management (2 level)
 
-A clean, modular **.NET 9** template using **Vertical Slice Architecture** — ideal for building scalable, maintainable APIs with **CQRS**, **Mediator Design Pattern**, **FluentValidation**, and **EF Core/Dapper**.
+## Security
+- Data encryption (name, nik, phone, address, license_plate_number)
+- Access authorization
+- User authentication
+- Input validation
+- Data backup
+- Data restore
+- Audit trail
 
-## Give a Star! :star:
-If you like or are using this project to learn or start your solution, please give it a star. Thanks!
+## Technology
+- Backend: .NET 9.0 (C#)
+    - Vertical Slice Architecture
+    - Entity Framework
+    - MediatR
+    - FluentValidation
+    - AutoMapper
+    - Serilog
+    - JWT
+    - Minimal API
+- Frontend: 
+    - NextJs
+    - TailwindCSS
+    - Shadcn UI
+- Database: PostgreSQL
+- RFID Reader: Arduino UNO + W5100 Shield + MFRC522
+- RFID Card: Mifare Classic 1K
+- Camera: IP Camera
+- Motion Sensor: PIR
 
-## Support This Project
+## Components
+- Entry gate 1x
+- Exit gate 1x
+- RFID Reader 2x
+- RFID Card 100pcs
+- Camera 1x
+- Motion Sensor 1x
+- Computer Set 1x
+- Switch Hub min 5 ports 1x
 
-If you have found this project helpful, either as a library that you use or as a learning tool, please consider buying me a coffee:
-
-<a href="https://www.buymeacoffee.com/codewithamit" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important" ></a>
-
-## What is Vertical Slice Architecture?
-
-Vertical Slice Architecture organizes code by features rather than technical layers. Each “slice” encapsulates all aspects of a specific feature, including the UI, business logic, and data access. This contrasts with traditional architectures that segregate applications into horizontal layers like Controllers, Services, and Repositories.
-
-![VA](VSA.drawio.png)
-
-Figure: Representation of Vertical Slice Architecture emphasizing feature-centric organization.
-The image above illustrates the concept of Vertical Slice Architecture, where each feature, represented as a vertical slice, integrates all necessary components across the UI, Application, Domain, and Infrastructure layers. This ensures each feature is self-contained and simplifies scaling, testing, and maintaining code
-
-## ✅ Features
-
-* Vertical slice structure organized per use case (CQRS style)
-* Minimal API with [Carter](https://github.com/CarterCommunity/Carter) for clean endpoint definitions
-* Mediator Design Pattern for command/query dispatching (withou MediatR library)
-* FluentValidation for request validation
-* EF Core-based persistence layer (with optional Dapper support)
-* Docker and Docker Compose support
-* Testable, modular, and decoupled architecture
-
-## 🚀 Getting Started
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/Amitpnk/Vertical-Slice-Architecture.git
-cd Vertical-Slice-Architecture
-```
-
-### 2. Build and Run with Docker
-
-To build and start the containers:
-
-```bash
-docker-compose up --build
-```
-
-To run the containers in detached mode:
-
-```bash
-docker-compose up -d
-```
-
-> **Note:**
-> Building the Docker image manually is not usually required, but if needed, use:
->
-> ```bash
-> docker build -f src/LeafByte.Parking.API/Dockerfile -t va-api .
-> ```
-
-### 3. Rebuild and Restart Containers
-
-If you need to rebuild and restart the containers (for example, after making changes):
-
-```bash
-docker-compose down -v
-docker-compose up --build
-```
-
-### 4. Open the Application
-
-Once the containers are running, open your browser and navigate to:
-
-```
-http://localhost:5000
-```
-
-You should see the API running. Adjust the port if you have changed it in the Docker configuration.
-
-
-## 📁 Project Structure
-
-```
-Vertical-Slice-Architecture/
-.github/
-    └── workflows/
-        └── dotnet.yml
-docs/
-    ├── gchr.md
-    └── README.md
-src/
-    ├── docker/
-        ├── .dockerignore
-        ├── docker-compose.dcproj
-        ├── docker-compose.override.yml
-        ├── docker-compose.yml
-        └── launchSettings.json
-    ├── LeafByte.Parking.API/
-        ├── Customers/
-            ├── CreateCustomer/
-                ├── CreateCustomer.cs
-                ├── CreateCustomerCommandHandler.cs
-                ├── CreateCustomerCommandValidator.cs
-                └── CreateCustomerEndpoint.cs
-            ├── DeleteCustomer/
-                ├── DeleteCustomer.cs
-                ├── DeleteCustomerCommandValidator.cs
-                ├── DeleteCustomerEndpoint.cs
-                └── DeleteCustomerHandler.cs
-            ├── GetCustomerById/
-                ├── GetCustomer.cs
-                ├── GetCustomerByIdEndpoint.cs
-                └── GetCustomerByIdQueryHandler.cs
-            ├── GetCustomers/
-                ├── GetCustomer.cs
-                ├── GetCustomersEndpoint.cs
-                └── GetCustomersQueryHandler.cs
-            └── UpdateCustomer/
-                ├── UpdateCustomer.cs
-                ├── UpdateCustomerCommandHandler.cs
-                ├── UpdateCustomerCommandValidator.cs
-                └── UpdateCustomerEndpoint.cs
-        ├── Data/
-            ├── CustomerContext.cs
-            └── Extentions.cs
-        ├── Migrations/
-            └── CustomerDb/
-                ├── 20250519180837_Init.cs
-                ├── 20250519180837_Init.Designer.cs
-                └── CustomerContextModelSnapshot.cs
-        ├── Models/
-            ├── Customer.cs
-            ├── CustomerDto.cs
-            └── CustomerExtensions.cs
-        ├── Properties/
-            └── launchSettings.json
-        ├── appsettings.Development.json
-        ├── appsettings.json
-        ├── docker-compose.md
-        ├── Dockerfile
-        ├── Dockerfile.original
-        ├── dotnet-cli.md
-        ├── GlobalUsing.cs
-        ├── my-sql.md
-        ├── Program.cs
-        ├── LeafByte.Parking.API.csproj
-        └── LeafByte.Parking.API.http
-    └── LeafByte.Parking.CrossCutting/
-        ├── Behaviors/
-            ├── LoggingBehavior.cs
-            └── ValidationBehavior.cs
-        ├── CQRS/
-            ├── Dispatcher.cs
-            ├── ICommand.cs
-            ├── ICommandHandler.cs
-            ├── IDispatcher.cs
-            ├── IQuery.cs
-            └── IQueryHandler.cs
-        ├── Exceptions/
-            ├── Handler/
-                └── CustomExceptionHandler.cs
-            ├── BadRequestException.cs
-            ├── InternalServerException.cs
-            └── NotFoundException.cs
-        ├── Pagination/
-            ├── PaginatedResult.cs
-            └── PaginationRequest.cs
-        └── LeafByte.Parking.CrossCutting.csproj
-test/
-    └── LeafByte.Parking.API.Tests/
-        ├── Customers/
-            └── GetCustomers/
-                ├── GetCustomersQueryHandlerTests.cs
-                └── GetCustomersQueryTests.cs
-        ├── Data/
-            └── CustomerContextTests.cs
-        ├── Models/
-            ├── CustomerDtoTests.cs
-            ├── CustomerExtensionsTests.cs
-            └── CustomerTests.cs
-        └── LeafByte.Parking.API.Tests.csproj
-.dockerignore
-.gitignore
-docker-compose.dcproj
-docker-compose.override.yml
-docker-compose.yml
-launchSettings.json
-LICENSE
-LeafByte.Parking.sln
-```
-
-## 📄 License
-
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Amitpnk/Vertical-Slice-Architecture/blob/main/LICENSE)
-
-This project is licensed under the MIT License — see the [LICENSE](./LICENSE) file for details.
-
-## 📬 Contact
-
-Having issues or need help getting started? Email amit.naik8103@gmail.com or [raise a bug or feature request](https://github.com/Amitpnk/Vertical-Slice-Architecture/issues/new). Always happy to help.
+## Backend
+### Models
+- User
+    - id (int)
+    - username (string)
+    - password (string)
+    - salt (string)
+    - role (enum) // admin, user
+    - created_at (datetime)
+    - updated_at (datetime)
+    - deleted_at (datetime)
+    - status (enum) // active, inactive
+- Persons
+    - id (int)
+    - name (string)
+    - gender (char)
+    - nik (string)
+    - address (string)
+    - phone (string)
+    - license_plate_number (string)
+    - created_at (datetime)
+    - updated_at (datetime)
+    - deleted_at (datetime)
+    - status (enum) // active, inactive
+- Card
+    - id (guid)
+    - person_id (int)
+    - card_uid (string)
+    - access_type (enum) // person, car, motorcycle
+    - created_at (datetime)
+    - updated_at (datetime)
+    - deleted_at (datetime)
+    - status (enum) // active, inactive
+- Gate
+    - id (int)
+    - name (string)
+    - code (string)
+    - created_at (datetime)
+    - updated_at (datetime)
+    - deleted_at (datetime)
+    - status (enum) // active, inactive
+- EntryLog
+    - id (int)
+    - card_id (guid)
+    - entry_time (datetime)
+    - entry_gate_id (int)
+    - entry_success (bool)
+    - entry_error (string)
+    - exit_time (datetime)
+    - exit_gate_id (int)
+    - exit_success (bool)
+    - exit_error (string)
+    - created_at (datetime)
+- Device
+    - id (int)
+    - name (string)
+    - ip_address (string)
+    - type (enum) // rfid reader, camera, motion_sensor, gate_crossbar
+    - port (int)
+    - created_at (datetime)
+    - updated_at (datetime)
+    - deleted_at (datetime)
+    - status (enum) // active, inactive
