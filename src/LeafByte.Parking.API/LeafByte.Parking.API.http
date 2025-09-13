@@ -1,0 +1,41 @@
+@LeafByte.Parking.API_HostAddress = http://localhost:5000
+
+### Get all customers (with optional pagination)
+GET {{LeafByte.Parking.API_HostAddress}}/Customers?pageIndex=1&pageSize=10
+Accept: application/json
+
+###
+
+### Get a customer by ID
+GET {{LeafByte.Parking.API_HostAddress}}/Customers/{{customerId}}
+Accept: application/json
+
+###
+
+### Create a new customer
+POST {{LeafByte.Parking.API_HostAddress}}/Customers
+Content-Type: application/json
+
+{
+  "customerCode": "CUST001",
+  "customerName": "John Doe"
+}
+
+###
+
+### Update an existing customer
+PUT {{LeafByte.Parking.API_HostAddress}}/Customers/{{customerId}}
+Content-Type: application/json
+
+{
+  "customerCode": "CUST001",
+  "customerName": "John Doe Updated"
+}
+
+###
+
+### Delete a customer
+DELETE {{LeafByte.Parking.API_HostAddress}}/Customers/{{customerId}}
+Accept: application/json
+
+###
