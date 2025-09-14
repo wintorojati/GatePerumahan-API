@@ -17,12 +17,14 @@ public class Handler : IRequestHandler<Command, Response>
         var person = new Person
         {
             Name = request.Name,
+            ResidentType = request.ResidentType,
             Gender = request.Gender,
-            Nik = request.Nik,
+            IdentityType = request.IdentityType,
+            IdentityNumber = request.IdentityNumber,
             Address = request.Address,
             Phone = request.Phone,
-            LicensePlateNumber = request.LicensePlateNumber,
-            CreatedAt = DateTime.UtcNow,
+            HouseId = request.HouseId,
+            CreatedAt = DateTimeOffset.UtcNow,
             Status = Status.Active
         };
 

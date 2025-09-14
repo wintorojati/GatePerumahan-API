@@ -1,14 +1,13 @@
 namespace LeafByte.Parking.API.Models;
 
-public class Device
+public class VehicleType
 {
     public int Id { get; set; }
     public required string Name { get; set; }
-    public required string IpAddress { get; set; }
-    public DeviceType Type { get; set; }
-    public int Port { get; set; }
+    public required string Description { get; set; }
+    public Status Status { get; set; }
+
     public DateTimeOffset CreatedAt { get; set; }
     public DateTimeOffset? UpdatedAt { get; set; }
     public DateTimeOffset? DeletedAt { get; set; }
-    public Status Status { get; set; }
 }

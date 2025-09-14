@@ -2,16 +2,16 @@
 System for managing access to residential gates using RFID.
 
 ## Features
-- RFID registration
-- RFID deletion
-- Member data management
+- RFID Card registration
+- RFID Card deletion
+- Person data management (Resident & Non Resident)
 - RFID authentication
 - Access log management
 - Access reports
 - User management (2 level)
 
 ## Security
-- Data encryption (name, nik, phone, address, license_plate_number)
+- Data encryption (name, nik, phone, address)
 - Access authorization
 - User authentication
 - Input validation
@@ -49,6 +49,21 @@ System for managing access to residential gates using RFID.
 - Computer Set 1x
 - Switch Hub min 5 ports 1x
 
+## General Concept
+1. Management alamat rumah (Blok dan Nomor rumah)
+2. Management penghuni
+3. Management Tamu (Buat kartu visitor)
+4. Management RFID Card
+5. Management RFID Reader
+6. Management Camera
+7. Management Motion Sensor
+8. Management Gate
+9. Management Access Log
+10. Management User
+12. Tamu bukan penghuni rumah akan dimintai Identitas (KTP/SIM/Pasport) dan diberikan Kartu Visitor untuk bisa akses masuk. ketika keluar perumahan, kartu ditukar kembali dengan Identitas (KTP/SIM/Pasport).
+13. Satu penghuni bisa memiliki lebih dari satu kartu dan bebas keluar masuk tanpa perlu menunjukkan identitas.
+
+
 ## Backend
 ### Models
 - User
@@ -57,18 +72,17 @@ System for managing access to residential gates using RFID.
     - password (string)
     - salt (string)
     - role (enum) // admin, user
+    - status (enum) // active, inactive
     - created_at (datetime)
     - updated_at (datetime)
     - deleted_at (datetime)
-    - status (enum) // active, inactive
-- Persons
+- Person
     - id (int)
     - name (string)
     - gender (char)
     - nik (string)
     - address (string)
     - phone (string)
-    - license_plate_number (string)
     - created_at (datetime)
     - updated_at (datetime)
     - deleted_at (datetime)
@@ -112,3 +126,4 @@ System for managing access to residential gates using RFID.
     - updated_at (datetime)
     - deleted_at (datetime)
     - status (enum) // active, inactive
+

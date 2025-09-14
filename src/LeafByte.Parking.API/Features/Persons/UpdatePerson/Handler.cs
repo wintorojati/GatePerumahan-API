@@ -22,12 +22,14 @@ public class Handler : IRequestHandler<Command>
             return;
 
         person.Name = request.Name;
+        person.ResidentType = request.ResidentType;
         person.Gender = request.Gender;
-        person.Nik = request.Nik;
+        person.IdentityType = request.IdentityType;
+        person.IdentityNumber = request.IdentityNumber;
         person.Address = request.Address;
         person.Phone = request.Phone;
-        person.LicensePlateNumber = request.LicensePlateNumber;
-        person.UpdatedAt = DateTime.UtcNow;
+        person.HouseId = request.HouseId;
+        person.UpdatedAt = DateTimeOffset.UtcNow;
 
         await _context.SaveChangesAsync(cancellationToken);
     }

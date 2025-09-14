@@ -13,11 +13,10 @@ public enum Status
     Deleted 
 }
 
-public enum AccessType
+public enum HouseStatus
 {
-    Person,
-    Car,
-    Motorcycle
+    Filled,
+    Empty
 }
 
 public enum DeviceType
@@ -26,4 +25,39 @@ public enum DeviceType
     Camera,
     MotionSensor,
     GateCrossbar
+}
+
+public enum IdentityType
+{
+    KTP,
+    SIM,
+    Passport
+}
+
+public enum ResidentType
+{
+    Resident,
+    NonResident
+}
+
+public enum Gender
+{
+    Male,
+    Female,
+    Other
+}
+
+public enum ActionType{
+    Add,
+    Edit,
+    Delete,
+}
+
+public enum PhotoType
+{
+    Profile,
+    EntryIn,
+    EntryOut,
+    Identity,
+    Other
 }

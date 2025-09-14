@@ -1,4 +1,5 @@
 using MediatR;
+using LeafByte.Parking.API.Models;
 
 namespace LeafByte.Parking.API.Features.Cards.GetCard;
 
@@ -6,9 +7,9 @@ public record Query(Guid Id) : IRequest<Response?>;
 
 public record Response(
     Guid Id,
-    int PersonId,
+    int? PersonId,
     string CardUid,
-    AccessType AccessType,
-    DateTime CreatedAt,
-    DateTime? UpdatedAt,
+    CardType CardType,
+    DateTimeOffset CreatedAt,
+    DateTimeOffset? UpdatedAt,
     Status Status);

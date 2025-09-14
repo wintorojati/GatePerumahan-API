@@ -8,6 +8,6 @@ public record Response(
     int Id,
     string Name,
     string Code,
-    DateTime CreatedAt,
-    DateTime? UpdatedAt,
+    DateTimeOffset CreatedAt,
+    DateTimeOffset? UpdatedAt,
     Status Status);

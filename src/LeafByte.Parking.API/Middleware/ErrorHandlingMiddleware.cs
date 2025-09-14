@@ -2,6 +2,7 @@ using System.Net;
 using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace LeafByte.Parking.API.Middleware;
 
@@ -24,12 +25,15 @@ public static class ErrorHandlingMiddleware
                         _ => (int)HttpStatusCode.InternalServerError
                     };
 
-                    await context.Response.WriteAsync(new ProblemDetails
+                    var problem = new ProblemDetails
                     {
                         Status = context.Response.StatusCode,
                         Title = contextFeature.Error.GetType().Name,
                         Detail = contextFeature.Error.Message
-                    }.ToString());
+                    };
+
+                    var json = JsonSerializer.Serialize(problem);
+                    await context.Response.WriteAsync(json);
                 }
             });
         });

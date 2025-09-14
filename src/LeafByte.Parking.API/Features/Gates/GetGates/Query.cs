@@ -9,5 +9,5 @@ public record GateDto(
     int Id,
     string Name,
     string Code,
-    DateTime CreatedAt,
-    DateTime? UpdatedAt);
+    DateTimeOffset CreatedAt,
+    DateTimeOffset? UpdatedAt);

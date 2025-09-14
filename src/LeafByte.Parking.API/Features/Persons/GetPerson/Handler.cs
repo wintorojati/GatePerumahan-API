@@ -25,11 +25,13 @@ public class Handler : IRequestHandler<Query, Response>
         return new Response(
             person.Id,
             person.Name,
+            person.ResidentType,
             person.Gender,
-            person.Nik,
+            person.IdentityType,
+            person.IdentityNumber,
             person.Address,
             person.Phone,
-            person.LicensePlateNumber,
+            person.HouseId,
             person.CreatedAt,
             person.UpdatedAt,
             person.Status);

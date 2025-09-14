@@ -1,4 +1,5 @@
 using MediatR;
+using LeafByte.Parking.API.Models;
 
 namespace LeafByte.Parking.API.Features.Devices.GetDevice;
 
@@ -10,6 +11,6 @@ public record Response(
     string IpAddress,
     DeviceType Type,
     int Port,
-    DateTime CreatedAt,
-    DateTime? UpdatedAt,
+    DateTimeOffset CreatedAt,
+    DateTimeOffset? UpdatedAt,
     Status Status);

@@ -1,5 +1,6 @@
 using MediatR;
 using LeafByte.Parking.CrossCutting.Pagination;
+using LeafByte.Parking.API.Models;
 
 namespace LeafByte.Parking.API.Features.Devices.GetDevices;
 
@@ -11,4 +12,4 @@ public record DeviceDto(
     string IpAddress,
     DeviceType Type,
     int Port,
-    DateTime CreatedAt);
+    DateTimeOffset CreatedAt);

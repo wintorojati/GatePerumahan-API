@@ -23,8 +23,8 @@ public class Handler : IRequestHandler<Command>
 
         card.PersonId = request.PersonId;
         card.CardUid = request.CardUid;
-        card.AccessType = request.AccessType;
-        card.UpdatedAt = DateTime.UtcNow;
+        card.CardType = request.CardType;
+        card.UpdatedAt = DateTimeOffset.UtcNow;
 
         await _context.SaveChangesAsync(cancellationToken);
     }

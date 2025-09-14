@@ -1,5 +1,6 @@
 using MediatR;
 using LeafByte.Parking.CrossCutting.Pagination;
+using System;
 
 namespace LeafByte.Parking.API.Features.EntryLogs.GetEntryLogs;
 
@@ -8,10 +9,10 @@ public record Query(PaginationRequest Pagination) : IRequest<PaginatedResult<Ent
 public record EntryLogDto(
     int Id,
     Guid CardId,
-    DateTime EntryTime,
+    DateTimeOffset EntryTime,
     int EntryGateId,
     bool EntrySuccess,
-    DateTime? ExitTime,
+    DateTimeOffset? ExitTime,
     int? ExitGateId,
     bool? ExitSuccess,
-    DateTime CreatedAt);
+    DateTimeOffset CreatedAt);

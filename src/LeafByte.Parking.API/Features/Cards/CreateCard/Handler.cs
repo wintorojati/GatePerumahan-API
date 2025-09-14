@@ -18,8 +18,8 @@ public class Handler : IRequestHandler<Command, Response>
         {
             PersonId = request.PersonId,
             CardUid = request.CardUid,
-            AccessType = request.AccessType,
-            CreatedAt = DateTime.UtcNow,
+            CardType = request.CardType,
+            CreatedAt = DateTimeOffset.UtcNow,
             Status = Status.Active
         };
 

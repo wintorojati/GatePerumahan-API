@@ -31,7 +31,7 @@ public class Handler : IRequestHandler<Query, PaginatedResult<CardDto>>
                 c.Id,
                 c.PersonId,
                 c.CardUid,
-                c.AccessType,
+                c.CardType,
                 c.CreatedAt,
                 c.Status))
             .ToListAsync(cancellationToken);

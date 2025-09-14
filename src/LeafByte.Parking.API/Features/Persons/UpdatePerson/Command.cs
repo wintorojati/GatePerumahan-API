@@ -1,12 +1,15 @@
 using MediatR;
+using LeafByte.Parking.API.Models;
 
 namespace LeafByte.Parking.API.Features.Persons.UpdatePerson;
 
 public record Command(
     int Id,
     string Name,
-    char Gender,
-    string Nik,
-    string Address,
-    string Phone,
-    string LicensePlateNumber) : IRequest;
+    ResidentType ResidentType,
+    Gender? Gender,
+    IdentityType? IdentityType,
+    string? IdentityNumber,
+    string? Address,
+    string? Phone,
+    int? HouseId) : IRequest;

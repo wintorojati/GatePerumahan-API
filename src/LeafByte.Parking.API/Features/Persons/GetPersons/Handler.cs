@@ -30,11 +30,13 @@ public class Handler : IRequestHandler<Query, PaginatedResult<PersonDto>>
             .Select(p => new PersonDto(
                 p.Id,
                 p.Name,
+                p.ResidentType,
                 p.Gender,
-                p.Nik,
+                p.IdentityType,
+                p.IdentityNumber,
                 p.Address,
                 p.Phone,
-                p.LicensePlateNumber,
+                p.HouseId,
                 p.CreatedAt))
             .ToListAsync(cancellationToken);
 

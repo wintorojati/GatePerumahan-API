@@ -1,5 +1,6 @@
 using MediatR;
 using LeafByte.Parking.CrossCutting.Pagination;
+using LeafByte.Parking.API.Models;
 
 namespace LeafByte.Parking.API.Features.Cards.GetCards;
 
@@ -7,8 +8,8 @@ public record Query(PaginationRequest Pagination) : IRequest<PaginatedResult<Car
 
 public record CardDto(
     Guid Id,
-    int PersonId,
+    int? PersonId,
     string CardUid,
-    AccessType AccessType,
-    DateTime CreatedAt,
+    CardType CardType,
+    DateTimeOffset CreatedAt,
     Status Status);

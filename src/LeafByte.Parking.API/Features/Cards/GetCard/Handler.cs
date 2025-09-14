@@ -26,7 +26,7 @@ public class Handler : IRequestHandler<Query, Response?>
             card.Id,
             card.PersonId,
             card.CardUid,
-            card.AccessType,
+            card.CardType,
             card.CreatedAt,
             card.UpdatedAt,
             card.Status);
