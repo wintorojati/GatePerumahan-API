@@ -7,6 +7,8 @@ using LeafByte.Parking.API.Features.Users;
 using LeafByte.Parking.API.Features.Auth;
 using LeafByte.Parking.CrossCutting.Exceptions.Handler;
 using LeafByte.Parking.API.Services;
+using LeafByte.Parking.API.Data;
+using LeafByte.Parking.API.Data.Seed;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
@@ -71,7 +73,10 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    db.Database.Migrate();
+    await db.Database.MigrateAsync();
+
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+    await VisitorCardSeeder.SeedAsync(db, app.Configuration, logger);
 }
 
 app.UseHttpsRedirection();

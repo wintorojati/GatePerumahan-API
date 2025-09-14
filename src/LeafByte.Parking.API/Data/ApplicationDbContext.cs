@@ -8,28 +8,15 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<Gate> Gates { get; set; } = default!;
     public DbSet<EntryLog> EntryLogs { get; set; } = default!;
     public DbSet<Device> Devices { get; set; } = default!;
+    public DbSet<VisitorInfo> VisitorInfos { get; set; } = default!;
+    public DbSet<House> Houses { get; set; } = default!;
+    public DbSet<VehicleType> VehicleTypes { get; set; } = default!;
+    public DbSet<Photo> Photos { get; set; } = default!;
+    public DbSet<CardHistory> CardHistories { get; set; } = default!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Configure relationships if needed
-        modelBuilder.Entity<Card>()
-            .HasOne(c => c.Person)
-            .WithMany()
-            .HasForeignKey(c => c.PersonId);
-
-        modelBuilder.Entity<EntryLog>()
-            .HasOne(e => e.Card)
-            .WithMany()
-            .HasForeignKey(e => e.CardId);
-
-        modelBuilder.Entity<EntryLog>()
-            .HasOne(e => e.EntryGate)
-            .WithMany()
-            .HasForeignKey(e => e.EntryGateId);
-
-        modelBuilder.Entity<EntryLog>()
-            .HasOne(e => e.ExitGate)
-            .WithMany()
-            .HasForeignKey(e => e.ExitGateId);
+        // Apply configurations from Models/Configurations
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
 }

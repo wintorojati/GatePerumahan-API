@@ -73,57 +73,67 @@ System for managing access to residential gates using RFID.
     - salt (string)
     - role (enum) // admin, user
     - status (enum) // active, inactive
-    - created_at (datetime)
-    - updated_at (datetime)
-    - deleted_at (datetime)
+    - created_at (datetimeoffset)
+    - updated_at (datetimeoffset)
+    - deleted_at (datetimeoffset)
 - Person
     - id (int)
     - name (string)
-    - gender (char)
-    - nik (string)
-    - address (string)
-    - phone (string)
-    - created_at (datetime)
-    - updated_at (datetime)
-    - deleted_at (datetime)
-    - status (enum) // active, inactive
+    - resident_type (enum) // resident, nonresident
+    - gender (enum?) // male, female, other
+    - identity_type (enum?) // ktp, sim, passport
+    - identity_number (string?)
+    - address (string?)
+    - phone (string?)
+    - house_id (int?)
+    - notes (string?)
+    - created_at (datetimeoffset)
+    - updated_at (datetimeoffset)
+    - deleted_at (datetimeoffset)
+    - status (enum) // active, inactive, deleted
 - Card
     - id (guid)
-    - person_id (int)
+    - person_id (int?)
     - card_uid (string)
-    - access_type (enum) // person, car, motorcycle
-    - created_at (datetime)
-    - updated_at (datetime)
-    - deleted_at (datetime)
-    - status (enum) // active, inactive
+    - card_type (enum) // resident, visitor, service
+    - label (string?)
+    - sequence_number (int?)
+    - vehicle_type_id (int?)
+    - vehicle_number (string?)
+    - valid_from (datetimeoffset?)
+    - valid_to (datetimeoffset?)
+    - created_at (datetimeoffset)
+    - updated_at (datetimeoffset)
+    - deleted_at (datetimeoffset)
+    - status (enum) // active, inactive, deleted
 - Gate
     - id (int)
     - name (string)
     - code (string)
-    - created_at (datetime)
-    - updated_at (datetime)
-    - deleted_at (datetime)
+    - created_at (datetimeoffset)
+    - updated_at (datetimeoffset)
+    - deleted_at (datetimeoffset)
     - status (enum) // active, inactive
 - EntryLog
     - id (int)
     - card_id (guid)
-    - entry_time (datetime)
+    - entry_time (datetimeoffset)
     - entry_gate_id (int)
     - entry_success (bool)
     - entry_error (string)
-    - exit_time (datetime)
+    - exit_time (datetimeoffset)
     - exit_gate_id (int)
     - exit_success (bool)
     - exit_error (string)
-    - created_at (datetime)
+    - created_at (datetimeoffset)
 - Device
     - id (int)
     - name (string)
     - ip_address (string)
     - type (enum) // rfid reader, camera, motion_sensor, gate_crossbar
     - port (int)
-    - created_at (datetime)
-    - updated_at (datetime)
-    - deleted_at (datetime)
+    - created_at (datetimeoffset)
+    - updated_at (datetimeoffset)
+    - deleted_at (datetimeoffset)
     - status (enum) // active, inactive
 

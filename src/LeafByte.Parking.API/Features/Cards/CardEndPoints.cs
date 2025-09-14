@@ -5,6 +5,7 @@ using LeafByte.Parking.API.Features.Cards.GetCards;
 using LeafByte.Parking.API.Features.Cards.GetCard;
 using LeafByte.Parking.API.Features.Cards.UpdateCard;
 using LeafByte.Parking.API.Features.Cards.DeleteCard;
+using LeafByte.Parking.API.Features.Cards.GetNextAvailableVisitorCard;
 
 namespace LeafByte.Parking.API.Features.Cards;
 
@@ -14,10 +15,12 @@ public static class CardEndPoints
     {
         var group = app.MapGroup("/cards").WithTags("Cards").RequireAuthorization();
 
-        group.MapPost("/", CreateCardEndpoint.AddRoute);
-        group.MapGet("/", GetCardsEndpoint.AddRoute);
-        group.MapGet("/{id}", GetCardEndpoint.AddRoute);
-        group.MapPut("/{id}", UpdateCardEndpoint.AddRoute);
-        group.MapDelete("/{id}", DeleteCardEndpoint.AddRoute);
+        // Properly register endpoints by calling their AddRoute methods
+        CreateCardEndpoint.AddRoute(group);
+        GetCardsEndpoint.AddRoute(group);
+        GetCardEndpoint.AddRoute(group);
+        UpdateCardEndpoint.AddRoute(group);
+        DeleteCardEndpoint.AddRoute(group);
+        GetNextAvailableVisitorCardEndpoint.AddRoute(group);
     }
 }

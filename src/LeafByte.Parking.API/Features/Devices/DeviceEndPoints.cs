@@ -14,10 +14,11 @@ public static class DeviceEndPoints
     {
         var group = app.MapGroup("/devices").WithTags("Devices").RequireAuthorization();
 
-        group.MapPost("/", CreateDeviceEndpoint.AddRoute);
-        group.MapGet("/", GetDevicesEndpoint.AddRoute);
-        group.MapGet("/{id}", GetDeviceEndpoint.AddRoute);
-        group.MapPut("/{id}", UpdateDeviceEndpoint.AddRoute);
-        group.MapDelete("/{id}", DeleteDeviceEndpoint.AddRoute);
+        // Call AddRoute to register endpoints on the group
+        CreateDeviceEndpoint.AddRoute(group);
+        GetDevicesEndpoint.AddRoute(group);
+        GetDeviceEndpoint.AddRoute(group);
+        UpdateDeviceEndpoint.AddRoute(group);
+        DeleteDeviceEndpoint.AddRoute(group);
     }
 }

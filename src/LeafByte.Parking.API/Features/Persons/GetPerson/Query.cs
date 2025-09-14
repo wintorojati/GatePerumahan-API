@@ -3,7 +3,7 @@ using LeafByte.Parking.API.Models;
 
 namespace LeafByte.Parking.API.Features.Persons.GetPerson;
 
-public record Query(int Id) : IRequest<Response>;
+public record Query(int Id) : IRequest<Response?>;
 
 public record Response(
     int Id,

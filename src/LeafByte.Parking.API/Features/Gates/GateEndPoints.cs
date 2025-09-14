@@ -14,10 +14,10 @@ public static class GateEndPoints
     {
         var group = app.MapGroup("/gates").WithTags("Gates").RequireAuthorization();
 
-        group.MapPost("/", CreateGateEndpoint.AddRoute);
-        group.MapGet("/", GetGatesEndpoint.AddRoute);
-        group.MapGet("/{id}", GetGateEndpoint.AddRoute);
-        group.MapPut("/{id}", UpdateGateEndpoint.AddRoute);
-        group.MapDelete("/{id}", DeleteGateEndpoint.AddRoute);
+        CreateGateEndpoint.AddRoute(group);
+        GetGatesEndpoint.AddRoute(group);
+        GetGateEndpoint.AddRoute(group);
+        UpdateGateEndpoint.AddRoute(group);
+        DeleteGateEndpoint.AddRoute(group);
     }
 }

@@ -14,10 +14,11 @@ public static class EntryLogEndPoints
     {
         var group = app.MapGroup("/entrylogs").WithTags("EntryLogs").RequireAuthorization();
 
-        group.MapPost("/", CreateEntryLogEndpoint.AddRoute);
-        group.MapGet("/", GetEntryLogsEndpoint.AddRoute);
-        group.MapGet("/{id}", GetEntryLogEndpoint.AddRoute);
-        group.MapPut("/{id}", UpdateEntryLogEndpoint.AddRoute);
-        group.MapDelete("/{id}", DeleteEntryLogEndpoint.AddRoute);
+        // Correctly register endpoints by invoking their AddRoute methods
+        CreateEntryLogEndpoint.AddRoute(group);
+        GetEntryLogsEndpoint.AddRoute(group);
+        GetEntryLogEndpoint.AddRoute(group);
+        UpdateEntryLogEndpoint.AddRoute(group);
+        DeleteEntryLogEndpoint.AddRoute(group);
     }
 }

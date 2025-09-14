@@ -14,10 +14,10 @@ public static class PersonEndPoints
     {
         var group = app.MapGroup("/persons").WithTags("Persons").RequireAuthorization();
 
-        group.MapPost("/", CreatePersonEndpoint.AddRoute);
-        group.MapGet("/", GetPersonsEndpoint.AddRoute);
-        group.MapGet("/{id}", GetPersonEndpoint.AddRoute);
-        group.MapPut("/{id}", UpdatePersonEndpoint.AddRoute);
-        group.MapDelete("/{id}", DeletePersonEndpoint.AddRoute);
+        CreatePersonEndpoint.AddRoute(group);
+        GetPersonsEndpoint.AddRoute(group);
+        GetPersonEndpoint.AddRoute(group);
+        UpdatePersonEndpoint.AddRoute(group);
+        DeletePersonEndpoint.AddRoute(group);
     }
 }

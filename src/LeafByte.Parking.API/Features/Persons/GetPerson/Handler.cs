@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LeafByte.Parking.API.Features.Persons.GetPerson;
 
-public class Handler : IRequestHandler<Query, Response>
+public class Handler : IRequestHandler<Query, Response?>
 {
     private readonly ApplicationDbContext _context;
 

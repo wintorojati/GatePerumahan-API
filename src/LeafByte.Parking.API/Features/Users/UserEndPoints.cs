@@ -14,10 +14,10 @@ public static class UserEndPoints
     {
         var group = app.MapGroup("/users").WithTags("Users").RequireAuthorization();
 
-        group.MapPost("/", CreateUserEndpoint.AddRoute);
-        group.MapGet("/", GetUsersEndpoint.AddRoute);
-        group.MapGet("/{id}", GetUserByIdEndpoint.AddRoute);
-        group.MapPut("/{id}", UpdateUserEndpoint.AddRoute);
-        group.MapDelete("/{id}", DeleteUserEndpoint.AddRoute);
+        CreateUserEndpoint.AddRoute(group);
+        GetUsersEndpoint.AddRoute(group);
+        GetUserByIdEndpoint.AddRoute(group);
+        UpdateUserEndpoint.AddRoute(group);
+        DeleteUserEndpoint.AddRoute(group);
     }
 }
